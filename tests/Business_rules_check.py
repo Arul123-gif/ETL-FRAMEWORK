@@ -7,7 +7,6 @@ def test_member_age():
     from member_dim
     where age <= 0
     """
-
     invalid_count = execute_scalar(query)
 
     assert invalid_count == 0
@@ -20,7 +19,6 @@ def test_claim_amount():
     from claim_fact
     where claim_amount < 0
     """
-
     invalid_count = execute_scalar(query)
 
     assert invalid_count == 0
