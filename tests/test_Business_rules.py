@@ -1,7 +1,7 @@
 from utilities.query_executor import execute_scalar
-
+from utilities.logger import logger
 def test_member_age():
-
+    logger.info("========== Row Count Validation Started ==========")
     query = """
     select count(*)
     from member_dim
@@ -10,6 +10,7 @@ def test_member_age():
     invalid_count = execute_scalar(query)
 
     assert invalid_count == 0
+    logger.info("========== Row Count Validation End ==========")
 
 
 def test_claim_amount():
