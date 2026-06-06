@@ -1,5 +1,4 @@
 import pytest
-
 from conftest import load_metadata
 from utilities.query_executor import execute_scalar
 

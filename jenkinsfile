@@ -5,33 +5,36 @@ pipeline {
     stages {
 
         stage('Checkout') {
-
             steps {
                 git branch: 'main',
-                url: 'https://gitlab.com/project/repo.git'
+                    url: 'https://github.com/Arul123-gif/ETL-FRAMEWORK.git'
             }
         }
 
-        stage('Run ETL') {
-
+        stage('Install Dependencies') {
             steps {
-                echo 'Running ETL Job'
+                bat 'pip install -r requirements.txt'
             }
         }
 
         stage('Run Pytest') {
-
             steps {
-                sh 'pytest --html=report.html'
+                script {
+                    def timestamp = new Date().format("yyyyMMdd_HHmmss")
+
+                    bat """
+                    pytest tests ^
+                    --html=reports/report_${timestamp}.html ^
+                    --self-contained-html
+                    """
+                }
             }
         }
     }
 
     post {
-
         always {
-
-            archiveArtifacts artifacts: 'report.html'
+            archiveArtifacts artifacts: 'reports/*.html'
         }
     }
 }
