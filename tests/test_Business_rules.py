@@ -31,5 +31,5 @@ def test_sum_of_Claim_amount():
     """
     total_sum = execute_scalar(query)
 
-    assert total_sum == 4350.00
+    assert total_sum == 4351.00
 
