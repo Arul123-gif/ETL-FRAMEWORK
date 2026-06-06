@@ -1,0 +1,4 @@
+source_table,target_table,primary_key
+member_src,member_dim,member_id
+claim_src,claim_fact,claim_id
+provider_src,provider_dim,provider_id

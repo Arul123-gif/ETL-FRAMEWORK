@@ -1,0 +1,37 @@
+pipeline {
+
+    agent any
+
+    stages {
+
+        stage('Checkout') {
+
+            steps {
+                git branch: 'main',
+                url: 'https://gitlab.com/project/repo.git'
+            }
+        }
+
+        stage('Run ETL') {
+
+            steps {
+                echo 'Running ETL Job'
+            }
+        }
+
+        stage('Run Pytest') {
+
+            steps {
+                sh 'pytest --html=report.html'
+            }
+        }
+    }
+
+    post {
+
+        always {
+
+            archiveArtifacts artifacts: 'report.html'
+        }
+    }
+}
